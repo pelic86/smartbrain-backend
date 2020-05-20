@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-prebuild": "rm -rf $(npm config get cache); mv ../.npmcache $(npm config get cache) || echo No cache",
+    "heroku-postbuild": "rm -rf ../.npmcache; mv $(npm config get cache) ../.npmcache || echo No cache"
   },
+  "cacheDirectories": [
+    "../.npmcache"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
